@@ -1,0 +1,5 @@
+clite Junior_boys_hostel  
+clite LHC 
+clite Main_building 
+Junior_boys_hostel Senior_boys_hostel 
+Junior_boys_hostel Main_building 
