@@ -82,12 +82,12 @@ int main()
 	  }
 	  createCampus(f1);
 	  createGraph(f2);
-	/*for (int i = 0; i < 11; i++) {
+	for (int i = 0; i < 11; i++) {
 		  for (int j = 0; j < 11; j++) {
 			  cout<<matrix[i][j]<<"\t\t";
 		  }
 		  cout << "\n";
-	  }*/
+	  }
 	  
 }
 
