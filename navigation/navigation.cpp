@@ -4,11 +4,6 @@
 
 using namespace std;
 
-double matrix[11][11];
-
-
-vector <location> campus;
-vector <roads> graph;
 
 
 pair<bool,int> findLoc(string nm) {
@@ -58,17 +53,22 @@ void createGraph(fstream& file) {
 		ss >> loc1 >> loc2;
 		cout << loc1 << " " << loc2 <<endl;
 		loca1 = findLoc(loc1);
-		loca2 = findLoc(loc2);
+		//cout << loca1.second<<endl;
+        loca2 = findLoc(loc2);
+		//cout << loca2.second << endl;
 		location temp1 = campus[loca1.second];
+		//cout << temp1.name << endl;
 		location temp2 = campus[loca2.second];
+		//cout << temp2.name << endl;
 		roads tempr(temp1, temp2);
+		//tempr.display();
 		if (loca1.first&&loca2.first) {
-			matrix[loca1.second][loca2.second] = matrix[loca1.second][loca2.second] = tempr.len;
+			matrix[loca1.second][loca2.second] = tempr.len;
 		}
 		graph.push_back(tempr);
-		//for (auto i = graph.begin(); i != graph.end(); ++i)
-		//	i->display();
-	}
+		}
+	//for (auto i = graph.begin(); i != graph.end(); ++i)
+		//i->display();
 }
 
 int main()
@@ -82,12 +82,12 @@ int main()
 	  }
 	  createCampus(f1);
 	  createGraph(f2);
-	  for (int i = 0; i < 11; i++) {
+	/*for (int i = 0; i < 11; i++) {
 		  for (int j = 0; j < 11; j++) {
 			  cout<<matrix[i][j]<<"\t\t";
 		  }
 		  cout << "\n";
-	  }
+	  }*/
 	  
 }
 

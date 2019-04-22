@@ -151,11 +151,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="global.h" />
     <ClInclude Include="location.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="roads.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="global.cpp" />
     <ClCompile Include="location.cpp" />
     <ClCompile Include="navigation.cpp" />
     <ClCompile Include="pch.cpp">
@@ -169,6 +172,9 @@
   <ItemGroup>
     <Text Include="location.txt" />
     <Text Include="roads.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="navigation.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
