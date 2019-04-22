@@ -151,14 +151,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Disjointsets.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="graph.h" />
     <ClInclude Include="location.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="roads.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Disjointsets.cpp" />
     <ClCompile Include="global.cpp" />
+    <ClCompile Include="graph.cpp" />
     <ClCompile Include="location.cpp" />
     <ClCompile Include="navigation.cpp" />
     <ClCompile Include="pch.cpp">

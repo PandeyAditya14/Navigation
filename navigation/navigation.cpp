@@ -4,7 +4,7 @@
 
 using namespace std;
 
-
+graph g(11, 14);
 
 pair<bool,int> findLoc(string nm) {
 	pair<bool, int> res;
@@ -45,7 +45,7 @@ void createCampus(fstream& file) {
 
 
 
-void createGraph(fstream& file) {
+void createRoads(fstream& file) {
 	string line, loc1, loc2;
 	pair<bool, int> loca1, loca2;
 	while (getline(file, line)) {
@@ -64,10 +64,11 @@ void createGraph(fstream& file) {
 		//tempr.display();
 		if (loca1.first&&loca2.first) {
 			matrix[loca1.second][loca2.second] = tempr.len;
+			g.addedge(loca1.second, loca2.second, tempr.len);
+			}
+		croads.push_back(tempr);
 		}
-		graph.push_back(tempr);
-		}
-	//for (auto i = graph.begin(); i != graph.end(); ++i)
+	//for (auto i = croads.begin(); i != croads.end(); ++i)
 		//i->display();
 }
 
@@ -81,13 +82,14 @@ int main()
 		  }
 	  }
 	  createCampus(f1);
-	  createGraph(f2);
-	for (int i = 0; i < 11; i++) {
+	  createRoads(f2);
+	/*for (int i = 0; i < 11; i++) {
 		  for (int j = 0; j < 11; j++) {
 			  cout<<matrix[i][j]<<"\t\t";
 		  }
 		  cout << "\n";
-	  }
+	  }*/
+	  g.kruskalMST();
 	  
 }
 

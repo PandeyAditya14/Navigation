@@ -16,9 +16,12 @@
 #include <math.h>
 #include <string>
 #include <utility>
+#include <algorithm>
 #include "roads.h"
 #include"location.h"
 #include"global.h"
+#include"graph.h"
+#include "Disjointsets.h"
 #define _USE_MATH_DEFINES
 #define M_PI 3.14159265358979323846
 #define earthRadiusKm 6371.0
