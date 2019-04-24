@@ -12,6 +12,8 @@
 #include <string.h>
 #include <vector>
 #include <fstream>
+#include <stack>
+#include <list>
 #include <sstream>
 #include <math.h>
 #include <string>
@@ -22,6 +24,7 @@
 #include"global.h"
 #include"graph.h"
 #include "Disjointsets.h"
+
 #define _USE_MATH_DEFINES
 #define M_PI 3.14159265358979323846
 #define earthRadiusKm 6371.0

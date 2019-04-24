@@ -42,7 +42,8 @@ int graph::kruskalMST()
 		{
 			// Current edge will be in the MST 
 			// so print it 
-			cout << u << " - " << v << endl;
+			cout << campus[u].name << " - " <<campus[v].name << endl;
+			cout << u <<" - "<< v << endl;
 
 			// Update MST weight 
 			mst_wt += it->first;
