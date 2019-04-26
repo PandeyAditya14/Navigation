@@ -51,7 +51,7 @@ void createRoads(fstream& file) {
 	while (getline(file, line)) {
 		istringstream ss(line);
 		ss >> loc1 >> loc2;
-		cout << loc1 << " " << loc2 <<endl;
+		//cout << loc1 << " " << loc2 <<endl;
 		loca1 = findLoc(loc1);
 		//cout << loca1.second<<endl;
         loca2 = findLoc(loc2);
@@ -90,6 +90,11 @@ int main()
 		  cout << "\n";
 	  }*/
 	  g.kruskalMST();
+	  g.caller(0, 2);
+	  while (!final.empty()) {
+		  cout << " <- " << campus[final.top()].name;
+		  final.pop();
+	  }
 	  
 }
 

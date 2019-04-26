@@ -12,6 +12,7 @@ graph::graph(int ver, int edg)
 void graph::addedge(int u, int v, int w)
 {
 	edges.push_back({ w, {u, v} });
+	
 }
 
 
@@ -44,6 +45,8 @@ int graph::kruskalMST()
 			// so print it 
 			cout << campus[u].name << " - " <<campus[v].name << endl;
 			cout << u <<" - "<< v << endl;
+			dfs[u].push_back(v);
+			dfs[v].push_back(u);
 
 			// Update MST weight 
 			mst_wt += it->first;
@@ -51,9 +54,58 @@ int graph::kruskalMST()
 			// Merge two sets 
 			ds.merge(set_u, set_v);
 		}
-	}
-
+		
+		}
+	/* for (int i = 0; i < 11; i++) {
+		std::vector<int>::iterator it = dfs[i].begin();
+		for (it; it < dfs[i].end(); it++)
+			cout << *it;
+		cout << endl;
+	}*/
+	//cout << visited[1];
 	return mst_wt;
+}
+
+void graph::caller(int s, int d)
+{
+	for (int i = 0; i < 11; i++) {
+		visited[i] = false;
+	}
+	int flag = 0;
+	final.push(s);
+	flag = dfsf(s, d);
+}
+
+int graph::dfsf(int st, int dest)
+{
+	vector<int> temp = dfs[st];
+	visited[st] = true;
+	
+	std::vector<int>::iterator it = temp.begin();
+	for (it; it < temp.end(); it++)
+		cout << *it << "\t";
+	cout << endl;
+	int flag = 0;
+	it = temp.begin();    
+	for (it; it < temp.end(); it++) {
+		
+		final.push(*it);
+	//	cout << *it;
+		if (*it == dest) {
+			return 1;
+		}
+		else if (!visited[*it]) {
+			flag = dfsf(*it, dest);
+		
+		}
+
+		if (flag == 1) {
+			return 1;
+		}
+		final.pop();
+	}
+	
+	return 0;
 }
 
 graph::~graph()
