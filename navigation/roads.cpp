@@ -16,6 +16,12 @@ roads::roads(void)
 
 }
 
+void roads::setdata(location stp, location edp)
+{
+	start_pt = stp;
+	end_pt = edp;
+}
+
 
 roads::roads(location stp, location edp)
 {

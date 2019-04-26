@@ -71,9 +71,17 @@ void createRoads(fstream& file) {
 	//for (auto i = croads.begin(); i != croads.end(); ++i)
 		//i->display();
 }
+void dispCampus() {
+	int i = 0;
+	std::vector<location>::iterator it=campus.begin();
+	for (it; it < campus.end(); it++, i++)
+		cout << i+1 << ". " << it->name << endl;
+
+}
 
 int main()
 {   
+	cout << "--------------------------------WELCOME TO KLETECH NAV--------------------------------------\n";
 	  fstream f1("location.txt");
       fstream f2("roads.txt"); 
 	  for (int i = 0; i < 11; i++) {
@@ -90,13 +98,89 @@ int main()
 		  cout << "\n";
 	  }*/
 	  g.kruskalMST();
-	  g.caller(0, 2);
+	 /*g.caller(0, 2);
 	  while (!final.empty()) {
 		  cout << " <- " << campus[final.top()].name;
 		  final.pop();
 	  }
-	  
+	  */
+
+	  int start, dest;
+	  int flag = 0;
+	  int choice = 0;
+	  vector<int> loctemp;
+	  roads temp;
+	  std::vector<int>::iterator it2;
+	  while (flag != -1) {
+		  cout <<"\n-------------------------Enter Your Choice------------------------------ \n1.View The list of landmarks Around campus"
+			   <<"\n2.Find th shortest route between 2 points in campus"
+			   <<"\n3.Distance between two Points on campus"
+			   <<"\n4.Coordinates of any given point on campus"
+			   <<"\n0.EXIT\n:";
+		  cin >> choice;
+		  switch (choice) {
+		  case 1: dispCampus();
+			  break;
+		  case 2: dispCampus();
+			  cout << "Enter your start and destination:\n";
+		      cin >> start >> dest;
+			  start--;
+			  dest--;
+			  g.caller(start, dest);
+			  while (!final.empty()) {
+				  loctemp.push_back(final.top());
+				  final.pop();
+			  }
+			  it2 = loctemp.begin();
+			  for (it2; it2 < loctemp.end(); it2++)
+				  cout << campus[*it2].name << " <-----| ";
+			  break;
+		  case 3: dispCampus();
+			  cout << "Enter your Point A and Point B:\n";
+			  cin >> start >> dest;
+			  temp.setdata(campus[--start], campus[--dest]);
+			  cout << "Distance between point entered is" <<temp.len<<"km"<<endl;
+			  break;
+		  case 4: dispCampus();
+			  cout << "Enter your desired loc\n";
+			  cin >> start;
+			  start--;
+			  campus[start].display();
+			  break;
+		  case 0:cout << "YOU WANT TO EXIT (YES-1/NO-0)????\n";
+			  cin >> start;
+			  if (start)
+				  flag = -1;
+			  break;
+		  default:
+			  cout << "ENTER A VALID CHOICE !!!!!!\n";
+		}
+					
+	  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

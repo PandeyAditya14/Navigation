@@ -9,16 +9,16 @@ graph::graph(int ver, int edg)
 	this->V = ver;
 }
 
-void graph::addedge(int u, int v, int w)
+void graph::addedge(int u, int v, double w)
 {
 	edges.push_back({ w, {u, v} });
 	
 }
 
 
-int graph::kruskalMST()
+double graph::kruskalMST()
 {
-	int mst_wt = 0; // Initialize result 
+	double mst_wt = 0.0; // Initialize result 
 
    // Sort edges in increasing order on basis of cost 
 	sort(edges.begin(), edges.end());
@@ -27,7 +27,7 @@ int graph::kruskalMST()
 	Disjointsets ds(V);
 
 	// Iterate through all sorted edges 
-	vector< pair<int, ipair> >::iterator it;
+	vector< pair<double, ipair> >::iterator it;
 	for (it = edges.begin(); it != edges.end(); it++)
 	{
 		int u = it->second.first;
@@ -43,8 +43,8 @@ int graph::kruskalMST()
 		{
 			// Current edge will be in the MST 
 			// so print it 
-			cout << campus[u].name << " - " <<campus[v].name << endl;
-			cout << u <<" - "<< v << endl;
+			/*cout << campus[u].name << " - " <<campus[v].name << endl;
+			cout << u <<" - "<< v << endl;*/
 			dfs[u].push_back(v);
 			dfs[v].push_back(u);
 
@@ -82,9 +82,9 @@ int graph::dfsf(int st, int dest)
 	visited[st] = true;
 	
 	std::vector<int>::iterator it = temp.begin();
-	for (it; it < temp.end(); it++)
+	/*for (it; it < temp.end(); it++)
 		cout << *it << "\t";
-	cout << endl;
+	cout << endl;*/
 	int flag = 0;
 	it = temp.begin();    
 	for (it; it < temp.end(); it++) {

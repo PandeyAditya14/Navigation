@@ -8,6 +8,7 @@ public:
 	double len;
 	roads(location stp , location edp);
 	roads(void);
+	void setdata(location stp , location edp);
 	double length();
 	void display();
 	~roads();
