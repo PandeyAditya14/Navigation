@@ -10,6 +10,8 @@
 #define PCH_H
 #include <iostream>
 #include <string.h>
+#include <exception>
+#include <ctype.h>
 #include <vector>
 #include <fstream>
 #include <stack>

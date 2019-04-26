@@ -6,6 +6,27 @@ using namespace std;
 
 graph g(11, 14);
 
+class number : public exception {
+public :
+	const char* what() {
+		return "The value entered shiuld be a number";
+	}
+};
+
+class valid : public exception {
+public:
+	const char* what() {
+		return "The value should be in range 1-11";
+	}
+};
+
+class same : public exception {
+public:
+	const char* what() {
+		return "Both points can't be same";
+	}
+};
+
 pair<bool,int> findLoc(string nm) {
 	pair<bool, int> res;
 	int flag = -1;
@@ -39,6 +60,7 @@ void createCampus(fstream& file) {
 		location temp(name, lat, lon);
 		campus.push_back(temp);
 		}	
+	campus.pop_back();
 	//for (auto i = campus.begin(); i != campus.end(); ++i)
 		//cout << " " << i->name << " " << i->latitude << " " << i->longitude << endl;
 }
@@ -111,6 +133,9 @@ int main()
 	  vector<int> loctemp;
 	  roads temp;
 	  std::vector<int>::iterator it2;
+	  number num;
+	  valid val;
+	  same sm;
 	  while (flag != -1) {
 		  cout <<"\n-------------------------Enter Your Choice------------------------------ \n1.View The list of landmarks Around campus"
 			   <<"\n2.Find th shortest route between 2 points in campus"
@@ -118,44 +143,70 @@ int main()
 			   <<"\n4.Coordinates of any given point on campus"
 			   <<"\n0.EXIT\n:";
 		  cin >> choice;
-		  switch (choice) {
-		  case 1: dispCampus();
-			  break;
-		  case 2: dispCampus();
-			  cout << "Enter your start and destination:\n";
-		      cin >> start >> dest;
-			  start--;
-			  dest--;
-			  g.caller(start, dest);
-			  while (!final.empty()) {
-				  loctemp.push_back(final.top());
-				  final.pop();
+		  try
+
+		  {
+			  switch (choice) {
+			  case 1: dispCampus();
+				  break;
+			  case 2: dispCampus();
+				  cout << "Enter your start and destination:\n";
+				  cin >> start >> dest;
+				  if (start < 1 || start > 11)
+					  throw val;
+				  else if (dest < 1 || dest > 11)
+					  throw val;
+				  else if (start == dest)
+					  throw sm;
+				  start--;
+				  dest--;
+				  g.caller(start, dest);
+				  while (!final.empty()) {
+					  loctemp.push_back(final.top());
+					  final.pop();
+				  }
+				  it2 = loctemp.begin();
+				  for (it2; it2 < loctemp.end(); it2++)
+					  cout << campus[*it2].name << " <-----| ";
+				  break;
+			  case 3: dispCampus();
+				  cout << "Enter your Point A and Point B:\n";
+				  cin >> start >> dest;
+				  if (start < 1 || start > 11)
+					  throw val;
+				  else if (dest < 1 || dest > 11)
+					  throw val;
+				  else if (start == dest)
+					  throw sm;
+				  temp.setdata(campus[--start], campus[--dest]);
+				  cout << "Distance between point entered is" << temp.length()*1000 << " m " << endl;
+				  break;
+			  case 4: dispCampus();
+				  cout << "Enter your desired loc\n";
+				  cin >> start;
+				  if (start < 1 || start > 11)
+					  throw val;
+				  start--;
+				  campus[start].display();
+				  break;
+			  case 0:cout << "YOU WANT TO EXIT (YES-1/NO-0)????\n";
+				  cin >> start;
+				  if (start)
+					  flag = -1;
+				  break;
+			  default:
+				  cout << "ENTER A VALID CHOICE !!!!!!\n";
 			  }
-			  it2 = loctemp.begin();
-			  for (it2; it2 < loctemp.end(); it2++)
-				  cout << campus[*it2].name << " <-----| ";
-			  break;
-		  case 3: dispCampus();
-			  cout << "Enter your Point A and Point B:\n";
-			  cin >> start >> dest;
-			  temp.setdata(campus[--start], campus[--dest]);
-			  cout << "Distance between point entered is" <<temp.len<<"km"<<endl;
-			  break;
-		  case 4: dispCampus();
-			  cout << "Enter your desired loc\n";
-			  cin >> start;
-			  start--;
-			  campus[start].display();
-			  break;
-		  case 0:cout << "YOU WANT TO EXIT (YES-1/NO-0)????\n";
-			  cin >> start;
-			  if (start)
-				  flag = -1;
-			  break;
-		  default:
-			  cout << "ENTER A VALID CHOICE !!!!!!\n";
-		}
-					
+		  }
+		  
+		  catch (valid s) {
+			  cout << s.what() << endl;
+		  }
+		  catch (same s) {
+			  cout << s.what() << endl;
+		  }catch (...) {
+			  cout <<"An error occured" << endl;
+		  }
 	  }
 
 }
